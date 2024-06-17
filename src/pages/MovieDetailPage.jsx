@@ -77,7 +77,7 @@ const MovieDetailPage = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="maind">
         <div className="movie-container">
           {movie ? renderMovieDetails(movie, cast) : <p>Loading...</p>}

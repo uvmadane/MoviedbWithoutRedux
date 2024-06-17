@@ -13,7 +13,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Router>
     <Header/>
-      <div>it is the main change</div>
       <App />
     </Router>
 );

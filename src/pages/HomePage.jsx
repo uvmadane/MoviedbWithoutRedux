@@ -33,7 +33,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       {status === "loading" && <p>Loading...</p>}
       {status === "failed" && <p>{error}</p>}
       {status === "succeeded" && (
