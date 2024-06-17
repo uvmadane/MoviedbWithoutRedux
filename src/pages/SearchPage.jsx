@@ -1,29 +1,53 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import Header from "../Components/Header"
-import { useLocation } from "react-router-dom"
-import { fetchSearchMovies } from "../store/moviesSlice"
-import MovieCard from "../Components/MovieCard"
+import React, { useState, useEffect } from "react";
+import Header from "../Components/Header";
+import MovieCard from "../Components/MovieCard";
+import { useLocation } from "react-router-dom";
+import { searchMovies } from "../services/movieService";
 
 const SearchPage = () => {
-  const dispatch = useDispatch()
-  const searchResults = useSelector((state) => state.movies.searchResults)
-  const status = useSelector((state) => state.movies.status)
-  const error = useSelector((state) => state.movies.error)
-  const location = useLocation()
-  const totalPages = useSelector((state) => state.movies.totalPages)
-  const [currentPage, setCurrentPage] = useState(1)
+  const [searchResults, setSearchResults] = useState([]);
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const location = useLocation();
 
   useEffect(() => {
-    const query = new URLSearchParams(location.search).get("query")
-    if (query) {
-      dispatch(fetchSearchMovies({ query, currentPage }))
-    }
-  }, [dispatch, location.search, currentPage])
+    const fetchSearchResults = async () => {
+      try {
+        setStatus("loading");
+
+        const query = new URLSearchParams(location.search).get("query");
+        if (!query) {
+          setStatus("idle");
+          return;
+        }
+
+        const response = await searchMovies(query, currentPage);
+
+        if (!response || response.results.length === 0) {
+          setStatus("idle");
+          setError("No results found.");
+          return;
+        }
+
+        setSearchResults(response.results);
+        setTotalPages(response.total_pages);
+        setStatus("succeeded");
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+        setStatus("failed");
+        setError("Failed to fetch search results.");
+      }
+    };
+
+    fetchSearchResults();
+  }, [location.search, currentPage]);
 
   const handlePageChange = (page) => {
-    setCurrentPage(page)
-  }
+    setCurrentPage(page);
+  };
 
   return (
     <>
@@ -39,7 +63,7 @@ const SearchPage = () => {
         />
       )}
     </>
-  )
-}
+  );
+};
 
-export default SearchPage
+export default SearchPage;

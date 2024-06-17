@@ -1,9 +1,9 @@
-import { Routes, Route } from "react-router-dom"
-import HomePage from "./pages/HomePage"
-import TopRatedPage from "./pages/TopRatedPage"
-import UpcomingPage from "./pages/UpcomingPage"
-import MovieDetailPage from "./pages/MovieDetailPage"
-import SearchPage from "./pages/SearchPage"
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import TopRatedPage from "./pages/TopRatedPage";
+import UpcomingPage from "./pages/UpcomingPage";
+import MovieDetailPage from "./pages/MovieDetailPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
       </Routes>
     </>
-  )
+  );
 }
-export default App
+
+export default App;

@@ -1,30 +1,37 @@
 import React, { useEffect, useState } from "react"
 import "../styles/movieDetails.css"
 import Header from "../Components/Header"
-import { getMovieById, getCast } from "../services/movieService"
+import { getMovieById, getCast } from "../services/movieService";
 import { BASE_URL } from "../config"
 import { useParams } from 'react-router-dom'
 
 
 const MovieDetailPage = () => {
-    const {id} =useParams();
-
-  const [movie, setMovie] = useState(null)
-  const [cast, setCast] = useState([])
+  const { id } = useParams();
+  const [movie, setMovie] = useState(null);
+  const [cast, setCast] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchMovieData = async () => {
-      const movieData = await getMovieById(id)
-      setMovie(movieData)
+      try {
+        const movieData = await getMovieById(id);
+        setMovie(movieData);
 
-      if (movieData.id) {
-        const castData = await getCast(movieData.id)
-        setCast(castData.cast)
+        if (movieData.id) {
+          const castData = await getCast(movieData.id);
+          setCast(castData.cast);
+        }
+      } catch (error) {
+        setError("Failed to fetch movie details");
+      } finally {
+        setLoading(false);
       }
-    }
+    };
 
-    fetchMovieData()
-  }, [id])
+    fetchMovieData();
+  }, [id]);
 
   const renderMovieDetails = (movie, cast) => (
     <div className="topmain">

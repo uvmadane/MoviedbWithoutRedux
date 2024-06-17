@@ -1,36 +1,42 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import MovieCard from "../Components/MovieCard";
-import { fetchPopularMovies } from "../store/moviesSlice";
+import { getPopularMovies } from "../services/movieService";
 
 const HomePage = () => {
-  const dispatch = useDispatch();
-  const movies = useSelector((state) => state.movies.popular);
-  const status = useSelector((state) => state.movies.status);
-  const error = useSelector((state) => state.movies.error);
-  const currentPage = useSelector((state) => state.movies.currentPage);
-  const totalPages = useSelector((state) => state.movies.totalPages);
+  const [movies, setMovies] = useState([]);
+  const [status, setStatus] = useState("idle"); // idle, loading, succeeded, failed
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchPopularMovies(currentPage));
-  }, [dispatch, currentPage]);
+    fetchPopularMovies(currentPage);
+  }, [currentPage]);
 
-  useEffect(() => {
-    dispatch({ type: 'movies/setCurrentPage', payload: 1 });
-  }, [dispatch]);
+  const fetchPopularMovies = async (page) => {
+    setStatus("loading");
+    try {
+      const response = await getPopularMovies(page);
+      setMovies(response.results);
+      setTotalPages(response.total_pages);
+      setStatus("succeeded");
+    } catch (error) {
+      setError(error.message);
+      setStatus("failed");
+    }
+  };
 
   const handlePageChange = (page) => {
-    dispatch({ type: 'movies/setCurrentPage', payload: page });
-    // dispatch(fetchPopularMovies(page));
+    setCurrentPage(page);
   };
 
   return (
     <div>
       <Header />
-      {status === 'loading' && <p>Loading...</p>}
-      {status === 'failed' && <p>{error}</p>}
-      {status === 'succeeded' && (
+      {status === "loading" && <p>Loading...</p>}
+      {status === "failed" && <p>{error}</p>}
+      {status === "succeeded" && (
         <MovieCard
           movies={movies}
           currentPage={currentPage}
