@@ -11,8 +11,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // Render the application with Redux and Router
 root.render(
     <Router>
-      <div>asdfsfdj</div>
-      {/* <App /> */}
+      <div>it is the main change</div>
+      <App />
     </Router>
 );
 
