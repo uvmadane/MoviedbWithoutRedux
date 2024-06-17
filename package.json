@@ -1,6 +1,6 @@
 {
-  "name": "moviedb",
-  "homepage": "https://uvmadane.github.io/Moviedb",
+  "name": "MoviedbWithoutRedux",
+  "homepage": "https://uvmadane.github.io/MoviedbWithoutRedux",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
