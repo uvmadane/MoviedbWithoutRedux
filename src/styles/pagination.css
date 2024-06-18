@@ -62,7 +62,6 @@
     padding: 6px;
   }
 }
-
 /* src/styles/NotFoundPage.css */
 
 .not-found-container {
@@ -84,3 +83,21 @@
   color: #666;
 }
 
+.links-container {
+  margin-top: 2rem;
+}
+
+.link {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 10px 20px;
+  background-color: #34383e;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  }
+  
+  .link:hover {
+  background-color: #34383e;
+    }
