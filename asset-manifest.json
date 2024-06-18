@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/MoviedbWithoutRedux/static/css/main.a6c383fe.css",
-    "main.js": "/MoviedbWithoutRedux/static/js/main.522f1ab3.js",
-    "static/js/453.ca201bf6.chunk.js": "/MoviedbWithoutRedux/static/js/453.ca201bf6.chunk.js",
-    "index.html": "/MoviedbWithoutRedux/index.html",
-    "main.a6c383fe.css.map": "/MoviedbWithoutRedux/static/css/main.a6c383fe.css.map",
-    "main.522f1ab3.js.map": "/MoviedbWithoutRedux/static/js/main.522f1ab3.js.map",
-    "453.ca201bf6.chunk.js.map": "/MoviedbWithoutRedux/static/js/453.ca201bf6.chunk.js.map"
+    "main.css": "https://uvmadane.github.io/MoviedbWithoutRedux/static/css/main.a6c383fe.css",
+    "main.js": "https://uvmadane.github.io/MoviedbWithoutRedux/static/js/main.02b9bb85.js",
+    "static/js/453.ca201bf6.chunk.js": "https://uvmadane.github.io/MoviedbWithoutRedux/static/js/453.ca201bf6.chunk.js",
+    "index.html": "https://uvmadane.github.io/MoviedbWithoutRedux/index.html",
+    "main.a6c383fe.css.map": "https://uvmadane.github.io/MoviedbWithoutRedux/static/css/main.a6c383fe.css.map",
+    "main.02b9bb85.js.map": "https://uvmadane.github.io/MoviedbWithoutRedux/static/js/main.02b9bb85.js.map",
+    "453.ca201bf6.chunk.js.map": "https://uvmadane.github.io/MoviedbWithoutRedux/static/js/453.ca201bf6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a6c383fe.css",
-    "static/js/main.522f1ab3.js"
+    "static/js/main.02b9bb85.js"
   ]
 }
